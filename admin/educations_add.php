@@ -42,7 +42,7 @@ if( isset( $_POST['user_id'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 ?>
 

@@ -7,6 +7,63 @@ a:visited {
   color: #FF8500;
 }
 
+html, body {
+  height: 100%;
+}
+
+.header-wrapper {
+  width: 100%;
+  display: flex; 
+  flex-flow: row wrap;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.header-left {
+  width: 70%;
+  display: flex; 
+  flex-flow: row wrap;
+  align-items:center;
+  gap: 5%;
+  margin-left: 4%;
+}
+
+.header-right > * {
+  margin: 0 20px;
+}
+
+.body-flex { 
+  display: flex; 
+  flex-flow: row wrap;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: #FFD580;
+}
+
+.sidebar-menu {
+  height: 100%;
+  width:100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-item {
+  font-size: 1.5em;
+  width: 100%;
+  color: black !important;
+  text-decoration: none; 
+  text-align: center;
+  padding: 10px 0;
+}
+
+.main-wrapper { 
+  width: 75%;
+}
+
 table {
   width: 100%;
   border: 1px solid #ccc;

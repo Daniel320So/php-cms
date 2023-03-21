@@ -43,7 +43,7 @@ if( isset( $_POST['first'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 ?>
 

@@ -39,7 +39,7 @@ if( isset( $_POST['email'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-top.php' );
 
 ?>
 
