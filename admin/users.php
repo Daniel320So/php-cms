@@ -21,7 +21,7 @@ if( isset( $_GET['delete'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 $query = 'SELECT *
   FROM users 
