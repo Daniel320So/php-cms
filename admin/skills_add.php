@@ -31,7 +31,7 @@ if( isset( $_POST['name'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 ?>
 

@@ -23,7 +23,7 @@
       <div class="sidebar-menu">
         <a href="./dahsboard.php" class="sidebar-item">Dashboard</a>
         <a href="./educations.php" class="sidebar-item">Education</a>
-        <a href="./experiences.php" class="sidebar-item">Experience</a>
+        <a href="./experience.php" class="sidebar-item">Experience</a>
         <a href="./projects.php" class="sidebar-item">Projects</a>
         <a href="./skills.php" class="sidebar-item">Skills</a>
         <a href="./users.php" class="sidebar-item">Users</a>

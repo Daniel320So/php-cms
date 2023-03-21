@@ -43,7 +43,7 @@ if( isset($_GET['user_id']) )
   $selected_user_id = htmlentities($_GET['user_id']);
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 ?>
 

@@ -35,7 +35,7 @@ if( isset( $_POST['skill_id'] ) )
   
 }
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 ?>
 

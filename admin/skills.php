@@ -39,7 +39,7 @@ if( isset( $_GET['cmd'] ) )
 }
 
 
-include( 'includes/header.php' );
+include( 'includes/header-left.php' );
 
 $query = 'SELECT *
   FROM skills
