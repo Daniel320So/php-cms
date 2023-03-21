@@ -27,6 +27,7 @@ html, body {
   flex-flow: row wrap;
   align-items: center;
   gap: 5%;
+  margin-top: 10px;
   margin-left: 4%;
 }
 

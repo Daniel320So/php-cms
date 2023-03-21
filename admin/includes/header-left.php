@@ -21,7 +21,7 @@
         <p><?php echo $_SESSION['email']; ?></p>
       </div>
       <div class="sidebar-menu">
-        <a href="./dahsboard.php" class="sidebar-item">Dashboard</a>
+        <a href="./dashboard.php" class="sidebar-item">Dashboard</a>
         <a href="./educations.php" class="sidebar-item">Education</a>
         <a href="./experience.php" class="sidebar-item">Experience</a>
         <a href="./projects.php" class="sidebar-item">Projects</a>
