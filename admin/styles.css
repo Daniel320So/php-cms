@@ -106,7 +106,11 @@ html, body {
 }
 
 .main-wrapper { 
-  width: 80%;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  padding: 20px;
 }
 
 table {
@@ -212,6 +216,11 @@ input[type=submit] {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 4em;
+}
+
+.card-container.col-2 {
+  grid-template-columns: repeat(2,1fr);
+
 }
 
 .card {
