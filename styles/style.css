@@ -1,0 +1,1096 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto+Slab:wght@300;500;700&family=Roboto:wght@300;500;700&display=swap');
+
+/* Sections 
+1. Global Variable
+2. General
+3. Header
+4. Main
+5. About Me
+6. Working Experience
+7. Projects
+8. Contacts
+9. Footer
+10. Media Query - Tablet
+*/
+
+/* 1. Global Variable */
+:root {
+    --main-color-1: #FD9D00;
+    --main-color-2: white;
+    --sub-color-1: #FFB337;
+    --sub-color-2: #FDE3A7;
+    --sub-color-3: #D18100;
+    --background-color-1: #06171D;
+    --background-color-2: #012531;
+    --background-color-3: rgba(0, 0, 0, 0.6);
+    --background-color-4: #015352;
+    --text-headings: 'Roboto Slab', serif;
+    --text-content: 'Roboto', serif;
+    --window-height: 700px;
+    --header-height: 30px;
+}
+
+/* 2. General */
+html {
+    box-sizing: border-box;
+    font-family: var(--text-content);
+    font: 500 1em 'Poppins';
+    background-color: var(--background-color-1);
+    color: var(--main-color-2);
+    margin: 0;
+    padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+    font-family: var(--text-headings);
+    color: var(--main-color-1);
+}
+
+h2 {
+    font-size: 1.5em;
+    filter: drop-shadow(0px 3px 4px rgba(208, 203, 161, 0.45));
+}
+
+section {
+    margin-bottom: 25px;
+}
+
+#about, #experience, #projects, #contacts {
+    padding-top: var(--header-height);
+}
+
+/* 3. Header */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color-1);
+    border-bottom: 1px solid var(--main-color-1);
+    height: var(--header-height);
+    z-index: 3;
+}
+
+.header-item {
+    height: 100%;
+}
+
+#header-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 60%;
+    padding-left: 3%;
+}
+
+header img {
+    height: 100%;
+}
+
+#main-navigation {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+#menu {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25em;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    list-style-type: none;
+}
+
+#menu li {
+    font-size: 0.75em;
+    width: 100%;
+    text-align: center;
+    background: var(--background-color-2);
+    border-bottom: 0.5px solid black;
+}
+
+#menu a {
+    color: white;
+}
+
+#menu a:hover {
+    color: var(--sub-color-1);
+    text-shadow: 0px 0.25em 0.25em var(--sub-color-1);
+}
+
+#menu a:active + #main-mavigation {
+    display: flex;
+}
+
+#menu-button {
+    display: block;
+    height: 60%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+/* 4. Main */
+main {
+    position: relative;
+    top: var(--header-height);
+}
+
+#main {
+    display: flex;
+    flex-flow: column nowrap;
+    height: calc(var(--window-height) - var(--header-height));
+    margin-bottom: 0;
+}
+
+#main::after {
+    content: "";
+    position: absolute;
+    z-index: -1; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--window-height) - var(--header-height));
+    background: url("../images/main_mobile.png") no-repeat;
+    background-size: 100% 80%;
+    animation: fadeIn 5s
+}
+
+@keyframes fadeIn  {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+#main span {
+    color: var(--main-color-1);
+}
+
+#tag-line {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    height: 130px;
+    padding: 10% 0 0 10%;
+}
+
+#tag-line>*, #main h1 {
+    display:none;
+    margin: 0;
+    width: fit-content;
+    max-width: fit-content;
+    min-height: 1.5em;
+    overflow: hidden;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+#tag-line-2 {
+    padding-left: 10%;
+}
+
+#tag-line-3 {
+    padding-left: 20%;
+}
+
+.animate-typing1 {
+    border-right: 0.15em solid var(--main-color-1);
+    animation: 
+        typing 0.75s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+.animate-typing2 {
+    border-right: 0.15em solid var(--main-color-1);
+    animation: 
+        typing 1s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    0% { width: 0 ;}
+    99% { width: 50%;}
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--main-color-1); }
+}
+
+#main h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--main-color-2);
+    background-color: var(--background-color-1);
+    height: 10%;
+    margin: 0;
+    margin-top: calc((var(--window-height) - var(--header-height)) * 0.8 - 130px);
+    align-self: center;
+}
+
+#main h2 {
+    color: var(--main-color-2);
+}
+
+#main p {
+    display: none;
+    font-family: var(--text-headings);
+    font-weight: 300;
+    font-size: 1em;
+    background-color: var(--background-color-1);
+    height: 10%;
+    text-align: center;
+    max-width: 100%;
+    margin: 0px;
+    padding: 0 10%;
+}
+
+.fade-in {
+    animation: fadeIn 2s
+}
+
+/* 5. About Me */
+
+#about {
+    position: relative;
+    overflow: hidden;
+}
+
+#about h2 {
+    padding-bottom: 10%;
+}
+
+#about, #about-container, #description {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#description {
+    gap: 10px;
+    width: 95%;
+    padding: 5% 0;
+    margin-bottom: 50px;
+    border: 3px dashed var(--background-color-4);
+    border-radius: 15px;
+}
+
+.description-item {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: calc(15% - 20px);
+
+}
+
+.description-item p {
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.description-item > p {
+    flex: 1 0 0;
+    color: var(--sub-color-2);
+}
+
+.description-detail {
+    flex: 2 0 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#technical-knowledge {
+    width: 90%;
+}
+
+#technical-knowledge img{
+    width: 100%;
+}
+
+#background-pattern-1 {
+    position: absolute;
+    z-index: -99999;
+    right: -50px;
+    top: -50px;
+    max-width: 100%;
+    width: 300px;
+}
+
+/* 6. Working Experience */
+#experience {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+}
+
+#background-pattern-2 {
+    position: absolute;
+    z-index: -99999;
+    right: 0;
+    top: -70px;
+    height: 150px;
+    width: 100%;
+}
+
+#mobile-header {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0 0 5% 0;
+}
+
+#experience-image {
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+
+.experience-image-frame {
+    position: absolute;
+    background-size: 100% 100%;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    border-radius: 40px;
+    z-index: 0;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.experience-image-frame-hover {
+    animation: mouseOverImage 2s;
+    z-index: 2 !important;
+    opacity: 1 !important;
+}
+
+@keyframes mouseOverImage {
+    from {
+        z-index: 0;
+        opacity: 0.5;
+    }
+    to {
+        z-index: 2;
+        opacity: 1;
+    }
+}
+
+.experience-image-frame-mouseout {
+    animation: mouseoutImage 2s;
+    z-index: 0 !important;
+    opacity: 0.5 !important;
+}
+
+@keyframes mouseoutImage {
+    from {
+        z-index: 2;
+        opacity: 1;
+    }
+    to {
+        z-index: 0;
+        opacity: 0.5;
+    }
+}
+
+#experience-image-frame-1 {
+    left: 0;
+    border: 5px solid #ffffff;
+}
+
+#experience-image-frame-2 {
+    right: 0;
+    border: 5px solid #354449;
+}
+
+.experience-active {
+    z-index: 1;
+    opacity: 1;
+    cursor: default;
+}
+
+.experience-description {
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#experience-details {
+    display: none;
+}
+
+.experience-description h2 {
+    display: none;
+}
+
+.experience-description h3 {
+    font-size: 1.25em;
+    color: var(--sub-color-2);
+}
+
+.experience-description p {
+    font-size: 1em;
+    margin-top: 0px;
+}
+
+.animate-experience-text {
+    animation: animateText 3s;
+}
+
+@keyframes animateText {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+#btn-resume {
+    font-weight: 700;
+    font-size: 0.75em;
+    color: var(--sub-color-3);
+    background: var(--main-color-2);
+    border: 3px solid var(--sub-color-3);
+    border-radius: 25px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+
+/* 7. Projects */
+#projects {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: var(--background-color-2);
+    padding-bottom: 50px;
+    margin-bottom: 0;
+}
+
+#projects h2 {
+    padding-bottom: 10%;
+}
+
+#projects-container, .projects-item {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects-item {
+    border: 1px solid var(--background-color-4);
+    border-radius: 5px;
+    width: 95%;
+}
+
+.project-image-container {
+    position: relative;
+    width:100%;
+}
+
+.project-image-container img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.project-image-container:hover  .link-container {
+    display: flex;
+}
+
+.link-container {
+    display: none;
+    position: absolute;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color-3);
+}
+
+.link-container > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    color: var(--main-color-2);
+    border-radius: 10px;
+    width: 35%;
+    height: 15%;
+    cursor: pointer;
+}
+
+.project-link {
+    background: #1368ad;
+}
+
+.github-link {
+    background: #6e5494;
+}
+
+.projects-text {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid var(--background-color-4);
+}
+
+.projects-text h3{
+    color: var(--sub-color-2);
+}
+
+.project-stack {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 0.75em;
+    padding: 10px 0 ;
+}
+
+.project-stack > p {
+    border: 1px solid var(--main-color-1);
+    border-radius: 5px;
+    padding: 0 2px;
+    margin: 0;
+}
+
+#projects-paginations {
+    display: flex;
+    flex-flow: row wrap;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#projects-paginations p {
+    cursor: pointer;
+}
+
+.page-active {
+    color: var(--main-color-1);
+    border-bottom: 1px solid var(--main-color-1);
+}
+
+.page-disable {
+    color:rgba(208, 203, 161, 0.45);
+    cursor: default !important;
+}
+
+/* 8. Contact */
+#contacts {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: var(--background-color-1);
+    border-bottom: 1px solid #FD9D00;
+}
+
+#contacts h2 {
+    padding-bottom: 50px;
+}
+
+#contacts-1 {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    padding-bottom: 20px;
+}
+
+#contacts-img-container {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#contacts-img-container a{
+    width: 20%
+}
+
+#contacts-img-container img{
+    width: 70%;
+    max-width: 100%;
+}
+
+#contacts-2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+}
+
+#contacts-form {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    font-size: 1em;
+    width: 80%;
+    margin: 10% 0 0 10%;
+}
+
+#contacts-form > * {
+    max-width: 100%;
+}
+
+#contacts-form > input, textarea {
+    width: 100%;
+}
+
+.form-input {
+    font-family: var(--text-content);
+    font-size: 1em;
+    color: var(--main-color-2);
+    background: var(--background-color-4);
+    border-radius: 25px;
+    margin-bottom: 25px;
+    min-height: 50px;
+    padding: 5px;
+}
+
+#form-msg {
+    display: none;
+    color: red;
+}
+
+#form-submit {
+    font-weight: 700;
+    font-size: 0.75em;
+    color: var(--sub-color-3);
+    background: var(--main-color-2);
+    border: 3px solid var(--sub-color-3);
+    border-radius: 25px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+/* 9. Footer */
+footer {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: var(--header-height);
+    border-top: 1px solid #FD9D00;
+    background-color: var(--background-color-1);
+    z-index: 3;
+}
+
+.footer-item {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+}
+
+#footer-disclaimer {
+    font-weight: 300;
+    font-size: 0.65em;
+    margin: 0;
+    left: 10%;
+}
+
+#footer-logo-container {
+    display: none;
+}
+
+/* 10. Media Query - Tablet */
+@media only screen and (min-width: 480px){
+    /* 10.1 Global Variable */
+    :root {
+        --window-height: 769px;
+        --header-height: 40px;
+    }
+
+    /* 10.2 General */
+    h2 {
+        font-size: 2em;
+    }
+
+    /* 10.3 Header */
+    #main {
+        display:block;
+    }
+
+    #main-navigation {
+        position: static;
+        display: block;
+        width: 70%;
+        padding-right: 5%;
+    }
+
+    #menu {
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.25em;
+        gap: 5%;
+    }
+
+    #menu li {
+        width: auto;
+        background-color: var(--background-color-1);
+    }
+
+    #menu-button {
+        display: none;
+    }
+
+    /* 10.4 Main */
+    #main::after {
+        background: url("../images/main_tablet.png") no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #main h1 {
+        margin-top: calc(150px + 20%);
+        padding-left: calc(10% - 50px);
+        background-color: transparent;
+        text-align: left;
+        font-size: 3.5em;
+        margin-bottom: 0;
+    }
+
+    #main h2 {
+        font-size: 3em;
+    }   
+
+    #main p {
+        font-size: 1.5em;
+        width: 45%;
+        padding: 0 0 0 calc(10% - 50px);
+        background-color: transparent;
+        text-align: left;
+    }
+
+    /* 10.5 About */
+
+    .description-item p {
+        font-size: 1.5em;
+    }
+
+    #background-pattern-1 {
+        right: -100px;
+        top: -100px;
+        width: 500px;
+    }
+
+    /* 10.6 Experience */
+
+    #background-pattern-2 {
+        top: -100px;
+        height: 200px
+    }
+
+    #experience-image {
+        width: 400px;
+    }
+
+    .experience-image-frame {
+        width: 300px;
+    }
+    
+    #experience-image-frame-1 {
+        left: 0;
+    }
+    
+    #experience-image-frame-2 {
+        left:auto;
+        right: 0;
+    }
+
+    .experience-description h3 {
+        font-size: 1.75em;
+    }
+    
+    .experience-description p {
+        font-size: 1.25em;
+    }
+    
+    #btn-resume {
+        font-size: 1em;
+    }
+
+    /* 10.7 Projects */
+    #projects-container{
+        display: flex;
+        flex-flow: row wrap;
+        gap: 5%;
+        width: 100%;
+    }
+
+    .projects-item {
+        width: 40%;
+        margin-bottom: 50px;
+    }
+
+    /* 10.8 Contacts*/
+
+    #contacts-img-container a{
+        width: 15%
+    }
+
+    #contacts-img-container img{
+        width: 100%;
+    }
+
+    #contacts-form {
+        font-size: 1.25em;
+    }
+
+    #form-submit {
+        font-size: 1em;
+    }
+
+    /* 10.9 Footer */
+    footer {
+        justify-content: space-between;
+    }
+
+    #footer-disclaimer-container {
+        width: 65%;
+    }
+
+    #footer-disclaimer {
+        font-size: 0.75em;
+        padding-left: 5%;
+    }
+    
+    #footer-logo-container {
+        display: block;
+        height: 50%;
+        padding-right: 5%;
+    }
+
+    #footer-logo-container img{
+        max-height: 100%;
+    }
+}
+
+/* 11. Media Query - Desktop */
+@media only screen and (min-width: 980px){
+    
+    /* 11.1. Global Variable */
+    :root {
+        --window-height: 800px;
+        --header-height: 50px;
+    }
+
+    /* 11.2 General */
+    h2 {
+        font-size: 4em;
+    }
+
+    /* 11.3 Header */
+    #menu {
+        font-size: 1.5em;
+        gap: 40px;
+    }
+
+    /* 11.4 Main */
+    #main::after {
+        background: url("../images/main.png") no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #tag-line {
+        padding-top: 100px;
+    }
+
+    #main h1 {
+        margin: calc(5% + 250px) 0 15px 0;
+        font-size: 5em;
+    }
+
+    #main h2 {
+        font-size: 4em;
+    }   
+
+    #main p {
+        font-size: 2em;
+        width: 50%;
+        background-color: transparent;
+        text-align: left;
+    }
+
+    /* 11.5 About */
+    #about h2 {
+        padding-bottom: 5%;
+    }
+
+    #about-container {
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 5%;
+        padding: 0 calc(15% - 150px);
+    }
+
+    #about-container > * {
+        width: 45%;
+        margin: 0;
+    }
+
+    #technical-knowledge {
+        width: 40%
+    }
+
+    .experience-description h3 {
+        font-size: 2.5em;
+    }
+    
+    .experience-description p {
+        font-size: 2em;
+    }
+    
+    #btn-resume {
+        font-size: 1.5em;
+        padding: 0 2%;
+    }
+
+    #background-pattern-1 {
+        right: -200px;
+        top: -200px;
+        width: 700px;
+    }
+
+    /* 11.6 Experience */
+
+    #background-pattern-2 {
+        width: 100% !important;
+        max-width: 100% !important;
+        top: -50px;
+        height: 180px;
+    }
+
+    #mobile-header {
+        display: none;
+    }
+
+    #experience {
+        flex-flow: row nowrap;
+        gap: 5%;
+    }
+
+    #experience > * {
+        width: 50%;
+        max-width: 50%;
+    }
+
+    #experience-image {
+        width: 400px;
+    }
+
+    .experience-image-frame {
+        width: 300px;
+    }
+
+    .experience-description {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: left;
+        align-items: flex-start;
+    }
+
+    .experience-description > * {
+        text-align: left;;
+    }
+
+    #experience-details {
+        display: block;
+        font-size: 0.5em;
+        margin-bottom: 25px;
+    }
+
+    #experience-details > *{
+        margin: 0;
+    }
+
+    .experience-description h2 {
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    /* 11.7 Projects */
+    #projects h2 {
+        padding-bottom: 5%;
+    }
+
+    #projects-container{
+        display: flex;
+        flex-flow: row wrap;
+        gap: 5%;
+    }
+
+    .projects-item {
+        width: 25%;
+        margin-bottom: 50px;
+    }
+
+    /* 11.8 Contact */
+
+    #contacts {
+        flex-flow: row wrap;
+        padding-top: 0;
+        background-color: var(--background-color-1);
+    }
+
+    #contacts > * {
+        flex: 1 0 0;
+        width: 40%;
+    }
+
+    #contacts-img-container {
+        align-items: center;
+        justify-content: center;
+        gap:5%;
+    }
+
+    #contacts-img-container a{
+        width: 10%
+    }
+
+    #contacts-2 {
+        background-color: var(--background-color-2);
+    }
+}

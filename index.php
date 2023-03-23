@@ -5,6 +5,7 @@ include( 'admin/includes/config.php' );
 include( 'admin/includes/functions.php' );
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,7 +71,8 @@ include( 'admin/includes/functions.php' );
                         ?>
                         <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
                             <h4><?php echo $record['school_name']; ?></h4>
-                            <p><?php echo $record['level_of_education']; ?> in <?php echo $record['field']; ?></p>
+                            <small><?php echo $record['level_of_education']; ?> in <?php echo $record['field']; ?></small>
+                            <br>
                         <?php endwhile; ?>
                         </div>
                     </div>
@@ -87,10 +89,6 @@ include( 'admin/includes/functions.php' );
         <section id="experience">
             <img id="background-pattern-2" src="./images/patterns/Background_Pattern_2.png" alt="Background_Pattern_of lines">
             <h2 id="mobile-header"> Working Experience </h2>
-            <div id="experience-image">
-                <div class="experience-image-frame experience-active" id="experience-image-frame-1"></div>
-                <div class="experience-image-frame" id="experience-image-frame-2"></div>
-            </div>
             <?php
                 $query = 'SELECT *
                 FROM experience ORDER BY id';
@@ -98,16 +96,43 @@ include( 'admin/includes/functions.php' );
                 $record = mysqli_fetch_all($result, MYSQLI_ASSOC);
             ?>
 
-            <div id="experience-description">
-                <h2>Work Experience</h2>
-                <h3><?php echo $record[0]['title']; ?></h3>
-                <p>@ <?php echo $record[0]['company']; ?></p>
-                <div id="experience-details">
-                    <?php echo $record[0]['content']; ?> 
-                </div>               
-                <button id="btn-resume">View Resume</button>
-            </div>
+            <div id="experience-image">
+                <?php
+                    for ($i = 0; $i < count($record); $i++) {
+                        $counter = $i + 1;
+                        if ( $counter == 1) {
+                            echo '<img class="experience-image-frame experience-active" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'"></img>';
+                        } else {
+                            echo '<img class="experience-image-frame" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'"></img>';
+                        }
 
+                    };
+                ?>
+            </div>
+            <?php
+                for ($i = 0; $i < count($record); $i++) {
+                    $counter = $i + 1;
+                    if ( $counter == 1) {
+                        echo '
+                        <div class="experience-description" id="experience-description-'.$counter.'";>
+                            <h2>Working Experience</h2>
+                            <h3>'.$record[$i]['title'].'</h3>
+                            <p>@ '.$record[$i]['company'].'</p>
+                            <div id="experience-details">'.$record[$i]['content'].'</div>               
+                            <button id="btn-resume">View Resume</button>
+                        </div>';
+                    } else {
+                        echo '
+                        <div class="experience-description" id="experience-description-'.$counter.'" style="display: none";>
+                            <h2>Working Experience</h2>
+                            <h3>'.$record[$i]['title'].'</h3>
+                            <p>@ '.$record[$i]['company'].'</p>
+                            <div id="experience-details">'.$record[$i]['content'].'</div>               
+                            <button id="btn-resume">View Resume</button>
+                        </div>';
+                    }
+                };
+            ?>
         </section>
 
         <!-- Projects -->
