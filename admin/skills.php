@@ -48,6 +48,8 @@ $result = mysqli_query( $connect, $query );
 
 ?>
 
+<h1>Skills</h1>
+
 <h2>Manage Skills</h2>
 <p><a href="skills_add.php"><i class="fas fa-plus-square"></i> Add skill</a></p>
 
@@ -79,6 +81,8 @@ $result = mysqli_query( $connect, $query );
 
 
 <h2>Assigned Skills</h2>
+<p><a href="skills_assign.php"><i class="fas fa-plus-square"></i> Assign a skill</a></p>
+
 <?php
 
   $query = "SELECT * FROM user_skills LEFT JOIN skills ON user_skills.skill_id = skills.id;";
@@ -102,7 +106,7 @@ $result = mysqli_query( $connect, $query );
 
   // Sorts the assigned skills based on the user. Each user has their own table, if they have a skill assigned
 
-  $query = "SELECT first,last,id FROM users ORDER BY first, last, id;";
+  $query = 'SELECT first,last,id FROM users WHERE id = "'.$_SESSION['id'].'" ORDER BY first, last, id;';
   $users = mysqli_query($connect, $query);
   while($user = mysqli_fetch_assoc($users))
   {
@@ -137,7 +141,6 @@ $result = mysqli_query( $connect, $query );
   }
   
 ?>
-<p><a href="skills_assign.php"><i class="fas fa-plus-square"></i> Assign a skill</a></p>
 
 
 <?php

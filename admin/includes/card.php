@@ -15,7 +15,9 @@ $camera = "data:image/gif;base64,R0lGODlh6ANYAsQAAOTk5N7e3ufn5+jo6Ozs7Obm5vPz89/
     ?>
         <div class="card">
         <div class="card-thumbnail">
+        <?php if ($lnk_photo): ?>
         <img  class="card-image" src="<?=$thumbnail ? $thumbnail : $camera;?>">
+        <?php endif; ?>
         </div>
 
         <div class="card-header">
@@ -36,12 +38,12 @@ $camera = "data:image/gif;base64,R0lGODlh6ANYAsQAAOTk5N7e3ufn5+jo6Ozs7Obm5vPz89/
 
         </div>
         <div class="card-body">
-            <p class="card-content">
+            <small class="card-content">
             <?php
                 $text = substr($content,0, 200);
                 echo $text;
             ?>
-            </p>
+            </small>
         </div>
         <div class="card-footer">
             <div class="card-btn-group">
@@ -50,11 +52,15 @@ $camera = "data:image/gif;base64,R0lGODlh6ANYAsQAAOTk5N7e3ufn5+jo6Ozs7Obm5vPz89/
                     Edit
                 </a>
             </div>
+            <?php if ($lnk_photo): ?>
+
             <div class="card-btn">
                 <a href="<?=$lnk_photo?>" class="txt-primary">
                     Icon
                 </a>
             </div>
+
+            <? endif; ?>
             <div class="card-btn">
                 <a href="<?=$lnk_delete?>" class="txt-danger">
                     Delete

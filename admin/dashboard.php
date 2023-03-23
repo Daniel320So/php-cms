@@ -6,6 +6,7 @@ include( 'includes/functions.php' );
 
 secure();
 
+include( 'includes/header-left.php' );
 include( 'includes/header-top.php' );
 
 ?>

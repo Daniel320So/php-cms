@@ -1,3 +1,6 @@
+*,*::before,*::after {
+  box-sizing: border-box;
+}
 
 a:link,
 a:active,
@@ -9,8 +12,11 @@ a:visited {
 
 
 html, body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
+
 }
 
 .header-wrapper {
@@ -41,16 +47,18 @@ html, body {
 
 .body-flex { 
   display: flex; 
-  flex-flow: row wrap;
+  /* flex-flow: row wrap; */
 }
 
 .sidebar {
+  flex-shrink: 1;
   width: 20%;
   background-color: #D9D9D9;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
+
 }
 
 .sidebar-left {
@@ -106,7 +114,11 @@ html, body {
 }
 
 .main-wrapper { 
-  width: 80%;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  padding: 20px;
 }
 
 table {
@@ -212,6 +224,11 @@ input[type=submit] {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 4em;
+}
+
+.card-container.col-2 {
+  grid-template-columns: repeat(2,1fr);
+
 }
 
 .card {

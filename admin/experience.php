@@ -51,7 +51,7 @@ while($exp = mysqli_fetch_assoc($result))
 
   // Organizes experiences based on which user they belong to
 
-  $query = "SELECT first,last,id FROM users ORDER BY first, last, id;";
+  $query = 'SELECT first,last,id FROM users WHERE id = "'.$_SESSION['id'].'" ORDER BY first, last, id;';
   $users = mysqli_query($connect, $query);
   while($user = mysqli_fetch_assoc($users))
   {
@@ -60,7 +60,7 @@ while($exp = mysqli_fetch_assoc($result))
     <h2><?=$user['first'].' '.$user['last']?></h2>
     <p><a href="experience_add.php?user_id=<?=$user['id']?>"><i class="fas fa-plus-square"></i> Add Experience for <?=$user['first'].' '.$user['last']?></a></p>
 
-    <div class="card-container">
+    <div class="card-container ">
 
     <?php foreach( $experiences[$user['id']] as $record ) {
         content_card (
@@ -80,6 +80,7 @@ while($exp = mysqli_fetch_assoc($result))
           "experience_edit.php?id=".$record['id'], // "Edit" button link location
 
           "experiences.php?cmd=delete&delete=".$record['id'] // "Delete" button link location
+
 
         );
 
