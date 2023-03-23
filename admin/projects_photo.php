@@ -93,9 +93,7 @@ if( isset( $_GET['id'] ) )
 }
 
 include( 'includes/header-left.php' );
-
-include 'includes/wideimage/WideImage.php';
-
+include('wideimage/WideImage.php');
 ?>
 
 <h2>Edit Project</h2>
@@ -105,13 +103,9 @@ include 'includes/wideimage/WideImage.php';
 </p>
 
 <?php if( $record['photo'] ): ?>
-
   <?php
-
-  $data = base64_decode( explode( ',', $record['photo'] )[1] );
-  $img = WideImage::loadFromString( $data );
-  $data = $img->resize( 200, 200, 'outside' )->crop( 'center', 'center', 200, 200 )->asString( 'jpg', 70 );
-
+  $img = WideImage::load($record['photo']);
+  $data = $img->resize( 200, 200, "outside")->crop('center', 'center', 200, 200)->asString( 'jpg', 70 );
   ?>
   <p><img src="data:image/jpg;base64,<?php echo base64_encode( $data ); ?>" width="200" height="200"></p>
   <p><a href="projects_photo.php?id=<?php echo $_GET['id']; ?>&delete"><i class="fas fa-trash-alt"></i> Delete this Photo</a></p>
