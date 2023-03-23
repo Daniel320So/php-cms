@@ -5,7 +5,7 @@ include( 'admin/includes/config.php' );
 include( 'admin/includes/functions.php' );
 
 ?>
-<!DOCTYPE html>
+
 <!doctype html>
 <html>
 <head>
