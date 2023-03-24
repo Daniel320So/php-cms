@@ -66,7 +66,7 @@ include( 'admin/includes/functions.php' );
                         <div class="description-detail">
                         <?php
                             $query = 'SELECT *
-                            FROM educations ORDER BY id';
+                            FROM educations WHERE user_id = 2 ORDER BY id';
                             $result = mysqli_query( $connect, $query );
                         ?>
                         <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
@@ -91,7 +91,7 @@ include( 'admin/includes/functions.php' );
             <h2 id="mobile-header"> Working Experience </h2>
             <?php
                 $query = 'SELECT *
-                FROM experience ORDER BY id';
+                FROM experience WHERE user_id = 2 ORDER BY id';
                 $result = mysqli_query( $connect, $query );
                 $record = mysqli_fetch_all($result, MYSQLI_ASSOC);
             ?>
@@ -139,6 +139,28 @@ include( 'admin/includes/functions.php' );
         <section id="projects">
             <h2>Projects</h2>
             <div id="projects-container">
+                <?php
+                    $query = 'SELECT *
+                    FROM projects WHERE user_id = 2 ORDER BY id';
+                    $result = mysqli_query( $connect, $query );
+                    $record = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+                    for ($i = 0; $i < count($record); $i++) {
+                        $counter = $i + 1;
+                        echo '
+                            <div class="projects-item" id="project-'.$counter.'">
+                                <div class="project-image-container">
+                                    <img src="'.$record[$i]['photo'].'" alt="Image of'.$record[$i]["title"].'">
+                                    <div class="link-container">
+                                        <a href="'.$item[$i]["url"].'" target="_balnk" class="project-link"><p>Site</p></a>
+                                    </div>
+                                </div>
+                                <div class="projects-text">
+                                    <h3>'.$record[$i]["title"].'</h3>
+                                </div>
+                            </div>';
+                    };
+                ?>
             </div>
         </section>
 

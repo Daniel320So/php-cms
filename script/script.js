@@ -6,17 +6,7 @@ const menuItems = [
     {text: "Contact", link: "#contacts"},
 ]
 
-const projectItems = [
-    {name: "Flappy Bird Christmas Edition", imgUrl:"./images/projects/Flappy_Bird_Christmas_Edition.png", projectUrl:"https://flappybird.danielso.dev/"
-    , githubUrl:"https://github.com/Daniel320So/HTML-FlappyBird", stacks:["CSS Animations", "HTML", "JavaScript"]},
-    {name: "Random Meal Picker", imgUrl:"./images/projects/Random_Meal_Picker.png", projectUrl:"https://meal-picker.glitch.me/"
-    , githubUrl:"https://github.com/Daniel320So/HTTP5111-Pet-Project-Random-Dinner-Picker", stacks:["JavaScript", "HTML"]}
-]
-
-
 let currentWork = "experience-image-frame-1";
-let currentPage = 1;
-
 
 // load page
 const loadPage = () => {
@@ -99,112 +89,6 @@ const loadPage = () => {
     $("#btn-resume").on("click", function() {
         window.open("https://drive.google.com/file/d/14NsTJoRy_WW747Re5xIWhsiAIOKlYfHQ/view?usp=share_link", '_blank');
     })
-
-    //add project items to project
-    projectItems.forEach( (item, i) => {
-        let ele = 
-        `<div class="projects-item" id="project-${i+1}">
-            <div class="project-image-container">
-                <img src="${item.imgUrl}" alt="Image of ${item.name}">
-                <div class="link-container">
-                    <a href="${item.projectUrl}" target="_balnk" class="project-link"><p>Site</p></a>
-                    <a href="${item.githubUrl}" target="_balnk" class="github-link"><p>Github</p></a>
-                </div>
-            </div>
-            <div class="projects-text">
-                <h3>${item.name}</h3>
-            </div>
-            <div class="project-stack">`
-        item.stacks.forEach( stack => {
-            ele = ele + `<p>${stack}</p>`
-        })
-        ele = ele + `</div></div>`
-        $("#projects-container").append(ele)
-    })
-
-    //add Paginations to project
-    const setupPaginations = () => {
-        let itemPerPage = 1
-        let width = $(window).width()
-        if (width < 480) {
-            itemPerPage = 1
-        } else if ( width < 980) {
-            itemPerPage = 6
-        } else {
-            itemPerPage = 6
-        }
-        let numberOfPages = Math.ceil(projectItems.length / itemPerPage);
-
-        //function to select Page
-        const selectPage = (page) => {
-            //change page to active
-            $("#projects-paginations").children().each(function () {
-                $(this).removeClass("page-active")
-            })
-            $(`#page-${page}`).addClass("page-active")
-
-            //show itemOnThePage only
-            for (let i = 1; i <= projectItems.length; i++) {
-                if (Math.ceil(i / itemPerPage) == page) {
-                    $(`#project-${i}`).show()
-                } else {
-                    $(`#project-${i}`).hide()
-                }
-            }
-
-            //Enable/disable arrow
-            if (page == 1) {
-                $("#first-page").addClass("page-disable")
-                $("#last-page").removeClass("page-disable")
-            } else if (page == numberOfPages) {
-                $("#last-page").addClass("page-disable")
-                $("#first-page").removeClass("page-disable")
-            } else {
-                $("#first-page").removeClass("page-disable")
-                $("#last-page").removeClass("page-disable")
-            }
-
-            currentPage = page;
-        }
-
-        if (numberOfPages == 1) {
-            selectPage(1)
-            return;
-        } 
-        
-        let pageEle = `<div id="projects-paginations"><p id="first-page">&laquo;</p>`
-
-        for (let i = 1; i <= numberOfPages; i++){
-            pageEle = pageEle + `<p id="page-${i}">${i}</p>`
-        }
-        pageEle = pageEle + `<p id="last-page">&raquo;</p></div>`
-        $("#projects-container").append(pageEle)
-    
-
-        for (let i = 1; i <= numberOfPages; i++) {
-            $(`#page-${i}`).on("click", function () {
-                selectPage(i)
-            })
-        }
-        $(`#first-page`).on("click", function () {
-            if (currentPage !== 1) selectPage(currentPage - 1)
-        })
-        $(`#last-page`).on("click", function () {
-            if (currentPage !== numberOfPages) selectPage(currentPage + 1)
-        })
-        selectPage(currentPage)
-    }
-    setupPaginations()
-
-    //set interval to detect browser width change
-    let currentWidth = $(window).width()
-    setInterval(function(){
-        let width = $(window).width()
-        if (currentWidth == width) return
-        $("#projects-paginations").remove()
-        setupPaginations()
-        currentWidth = width
-    }, 1000)
 
     //add submit to contact form
     const submitForm = () => {
