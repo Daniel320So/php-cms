@@ -40,7 +40,7 @@ $result = mysqli_query( $connect, $query );
     <th align="left">Email</th>
     <th></th>
     <th></th>
-    <th></th>
+    <th align="left">is Active?</th>
   </tr>
   <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
     <tr>
