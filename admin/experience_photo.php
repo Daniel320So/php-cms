@@ -49,8 +49,8 @@ if( isset( $_FILES['photo'] ) )
   
   set_message( 'Work experience photo has been updated' );
 
-  // header( 'Location: experience.php' );
-  // die();
+  header( 'Location: experience.php' );
+  die();
   
 }
 

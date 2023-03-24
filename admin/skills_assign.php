@@ -10,7 +10,7 @@ if( isset( $_POST['skill_id'] ) )
 {
   
   // checks for minimum content
-  if( $_POST['skill_id'] and $_POST['user_id'] )
+  if( $_POST['skill_id'] and $_SESSION['id'] )
   {
     
     $query = 'INSERT INTO user_skills (
@@ -19,7 +19,7 @@ if( isset( $_POST['skill_id'] ) )
         percent,
         description
       ) VALUES (
-         "'.mysqli_real_escape_string( $connect, $_POST['user_id'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_SESSION['id'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['skill_id'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['percent'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['description'] ).'"
@@ -43,20 +43,13 @@ include( 'includes/header-left.php' );
 
 <form method="post">
   
-<label for="user_id">User:</label>
-  <select id="user_id" name="user_id">
-    <option selected disabled>Select a username...</option>
-    <?php
-      $q = "SELECT id, first, last FROM users";
+<label for="user">User:</label>
+  <?php
+      $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
       $res = mysqli_query($connect, $q);
-      while($user = mysqli_fetch_assoc($res))
-      {
-      ?>
-      <option value="<?=$user['id']?>"><?=$user['first']?> <?=$user['last']?></option>
-      <?php
-      }
-    ?>
-  </select>
+      $user = mysqli_fetch_assoc($res);
+  ?>
+  <input id="user" name="user_id" value="<?=$user['first'].' '.$user['last'];?>" disabled>
   <br>
 
   <label for="skill_id">Skill:</label>

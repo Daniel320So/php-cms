@@ -13,13 +13,12 @@ if( !isset( $_GET['id'] ) )
   
 }
 
-if( isset( $_POST['user_id'] ) )
+if( isset( $_POST['school_name'] ) )
 {
-  
-  if( $_POST['user_id'] and $_POST['school_name'] )
+
+  if( $_POST['school_name'] )
   {
     $query = 'UPDATE educations SET
-      user_id = "'.mysqli_real_escape_string( $connect, $_POST['user_id'] ).'",
       school_name = "'.mysqli_real_escape_string( $connect, $_POST['school_name'] ).'",
       location = "'.mysqli_real_escape_string( $connect, $_POST['location'] ).'",
       level_of_education = "'.mysqli_real_escape_string( $connect, $_POST['level_of_education'] ).'",
@@ -70,8 +69,15 @@ include( 'includes/header-left.php' );
 
 <form method="post">
 
-  <label for="user_id">User ID:</label>
-  <input type="number" name="user_id" id="user_id" value="<?php echo htmlentities( $record['user_id'] ); ?>">
+  <label for="user">User:</label>
+
+<?php
+      $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
+      $res = mysqli_query($connect, $q);
+      $user = mysqli_fetch_assoc($res);
+  ?>
+  <input id="user" name="user_id" value="<?=$user['first'].' '.$user['last'];?>" disabled>
+    
     
   <br>
 

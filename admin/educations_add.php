@@ -6,10 +6,10 @@ include( 'includes/functions.php' );
 
 secure();
 
-if( isset( $_POST['user_id'] ) )
+if( isset( $_POST['school_name'] ) )
 {
   
-  if( $_POST['user_id'] and $_POST['school_name'] )
+  if( $_SESSION['id'] and $_POST['school_name'] )
   {
     
     $query = 'INSERT INTO educations (
@@ -22,7 +22,7 @@ if( isset( $_POST['user_id'] ) )
         end_date,
         content
       ) VALUES (
-         "'.mysqli_real_escape_string( $connect, $_POST['user_id'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_SESSION['id'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['school_name'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['location'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['level_of_education'] ).'",
@@ -50,13 +50,19 @@ include( 'includes/header-left.php' );
 
 <form method="post">
   
-  <label for="user_id">User ID:</label>
-  <input type="number" name="user_id" id="user_id">
+<label for="user">User:</label>
+
+<?php
+      $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
+      $res = mysqli_query($connect, $q);
+      $user = mysqli_fetch_assoc($res);
+  ?>
+  <input id="user" name="user_id" value="<?=$user['first'].' '.$user['last'];?>" disabled>
     
   <br>
 
   <label for="school_name">School Name:</label>
-  <input type="text" name="school_name" id="school_name">
+  <input type="text" name="school_name" id="school_name" required>
     
   <br>
 
