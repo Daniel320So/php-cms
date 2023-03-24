@@ -86,7 +86,7 @@ const loadPage = () => {
     })
 
     //add view Resume in working experience
-    $("#btn-resume").on("click", function() {
+    $(".btn-resume").on("click", function() {
         window.open("https://drive.google.com/file/d/14NsTJoRy_WW747Re5xIWhsiAIOKlYfHQ/view?usp=share_link", '_blank');
     })
 

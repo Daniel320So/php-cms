@@ -6,7 +6,7 @@ include( 'admin/includes/functions.php' );
 
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -80,7 +80,7 @@ include( 'admin/includes/functions.php' );
 
                 <!-- Technical Knowledge-->
                 <div id="technical-knowledge">
-                    <img src="./images/about/technical-knowledge.png">
+                    <img src="./images/about/technical-knowledge.png" alt="Ho Kit So is interested in a wide variety of programming languages, including TypeScript, ReactJs, and Solidity.">
                 </div>
             </div>
         </section>
@@ -101,9 +101,9 @@ include( 'admin/includes/functions.php' );
                     for ($i = 0; $i < count($record); $i++) {
                         $counter = $i + 1;
                         if ( $counter == 1) {
-                            echo '<img class="experience-image-frame experience-active" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'"></img>';
+                            echo '<img class="experience-image-frame experience-active" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'" alt="A working application of'.$record[$i]['title'].'"></img>';
                         } else {
-                            echo '<img class="experience-image-frame" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'"></img>';
+                            echo '<img class="experience-image-frame" id="experience-image-frame-'.$counter.'" src="'.$record[$i]['photo'].'" alt="A working application of'.$record[$i]['title'].'"></img>';
                         }
 
                     };
@@ -114,21 +114,21 @@ include( 'admin/includes/functions.php' );
                     $counter = $i + 1;
                     if ( $counter == 1) {
                         echo '
-                        <div class="experience-description" id="experience-description-'.$counter.'";>
+                        <div class="experience-description" id="experience-description-'.$counter.'">
                             <h2>Working Experience</h2>
                             <h3>'.$record[$i]['title'].'</h3>
                             <p>@ '.$record[$i]['company'].'</p>
-                            <div id="experience-details">'.$record[$i]['content'].'</div>               
-                            <button id="btn-resume">View Resume</button>
+                            <div class="experience-details">'.$record[$i]['content'].'</div>               
+                            <button class="btn-resume">View Resume</button>
                         </div>';
                     } else {
                         echo '
-                        <div class="experience-description" id="experience-description-'.$counter.'" style="display: none";>
+                        <div class="experience-description" id="experience-description-'.$counter.'" style="display: none">
                             <h2>Working Experience</h2>
                             <h3>'.$record[$i]['title'].'</h3>
                             <p>@ '.$record[$i]['company'].'</p>
-                            <div id="experience-details">'.$record[$i]['content'].'</div>               
-                            <button id="btn-resume">View Resume</button>
+                            <div class="experience-details">'.$record[$i]['content'].'</div>               
+                            <button class="btn-resume">View Resume</button>
                         </div>';
                     }
                 };
@@ -152,7 +152,7 @@ include( 'admin/includes/functions.php' );
                                 <div class="project-image-container">
                                     <img src="'.$record[$i]['photo'].'" alt="Image of'.$record[$i]["title"].'">
                                     <div class="link-container">
-                                        <a href="'.$record[$i]["url"].'" target="_balnk" class="project-link"><p>Site</p></a>
+                                        <a href="'.$record[$i]["url"].'" target="_blank" class="project-link"><p>Site</p></a>
                                     </div>
                                 </div>
                                 <div class="projects-text">

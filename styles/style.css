@@ -445,7 +445,7 @@ main {
     margin-top: 30px;
 }
 
-#experience-details {
+.experience-details {
     display: none;
 }
 
@@ -472,7 +472,7 @@ main {
     to {opacity: 1}
 }
 
-#btn-resume {
+.btn-resume {
     font-weight: 700;
     font-size: 0.75em;
     color: var(--sub-color-3);
@@ -848,7 +848,7 @@ footer {
         font-size: 1.25em;
     }
     
-    #btn-resume {
+    .btn-resume {
         font-size: 1em;
     }
 
@@ -983,7 +983,7 @@ footer {
         font-size: 2em;
     }
     
-    #btn-resume {
+    .btn-resume {
         font-size: 1.5em;
         padding: 0 2%;
     }
@@ -1036,13 +1036,13 @@ footer {
         text-align: left;;
     }
 
-    #experience-details {
+    .experience-details {
         display: block;
         font-size: 0.5em;
         margin-bottom: 25px;
     }
 
-    #experience-details > *{
+    .experience-details > *{
         margin: 0;
     }
 
