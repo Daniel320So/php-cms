@@ -23,7 +23,7 @@ if( isset( $_GET['delete'] ) )
 
 include( 'includes/header-left.php' );
 
-$query = 'SELECT * FROM experience';
+$query = 'SELECT * FROM experience WHERE user_id ='.$_SESSION['id'].'';
 $result = mysqli_query( $connect, $query );
 $experiences = array();
 

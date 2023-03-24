@@ -70,5 +70,4 @@ $camera = "data:image/gif;base64,R0lGODlh6ANYAsQAAOTk5N7e3ufn5+jo6Ozs7Obm5vPz89/
         </div>
         </div>
     <?php
-
 }

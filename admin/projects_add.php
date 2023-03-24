@@ -17,18 +17,19 @@ if( isset( $_POST['title'] ) )
         content,
         date,
         type,
-        url
+        url,
+        user_id
       ) VALUES (
          "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['date'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['type'] ).'",
-         "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'"
+         "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_SESSION['id'] ).'"
       )';
-    mysqli_query( $connect, $query );
-    
-    set_message( 'Project has been added' );
-    
+      set_message( $query );
+      mysqli_query( $connect, $query );
+
   }
   
   header( 'Location: projects.php' );
