@@ -21,7 +21,8 @@ if( isset( $_POST['title'] ) )
   {
     
     $query = 'UPDATE experience SET
-      user_id= "'.mysqli_real_escape_string( $connect, $_POST['user_id']).'",
+      user_id = "'.mysqli_real_escape_string( $connect, $_POST['user_id']).'",
+      company = "'.mysqli_real_escape_string( $connect, $_POST['company']).'",
       title = "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
       content = "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
       start_date = "'.mysqli_real_escape_string( $connect, $_POST['start_date'] ).'",
@@ -85,6 +86,11 @@ include( 'includes/header-left.php' );
   </select>
   <br>
   
+  <label for="company">Company:</label>
+  <input required type="text" name="company" id="company" value="<?php echo htmlentities( $record['company'] ); ?>">
+    
+  <br>
+
   <label for="title">Title:</label>
   <input required type="text" name="title" id="title" value="<?php echo htmlentities( $record['title'] ); ?>">
     

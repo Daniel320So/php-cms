@@ -69,19 +69,19 @@ while($exp = mysqli_fetch_assoc($result))
 
           "experience", // Record type
 
-          $record['title'], // Title
+          $record['company'], // Title
 
-          common_date($record['start_date']).' - '.common_date($record['end_date']), // Subtitle
+          $record['title'].'<br>'.common_date($record['start_date']).' - '.common_date($record['end_date']), // Subtitle
 
-          null, // Thumbnail Link
+          $record['photo'], // Thumbnail Link
 
           $record['content'], // body content (limi 200 characters)
 
           "experience_edit.php?id=".$record['id'], // "Edit" button link location
 
-          "experiences.php?cmd=delete&delete=".$record['id'] // "Delete" button link location
+          "experience.php?cmd=delete&delete=".$record['id'], // "Delete" button link location
 
-
+          "experience_photo.php?id=".$record['id'], // "Photo" button link location
         );
 
     } 

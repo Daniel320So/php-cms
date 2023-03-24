@@ -9,14 +9,14 @@ secure();
 if( !isset( $_GET['id'] ) )
 {
   
-  header( 'Location: projects.php' );
+  header( 'Location: experience.php' );
   die();
   
 }
 
 if( isset( $_FILES['photo'] ) )
 {
-  
+
   if( isset( $_FILES['photo'] ) )
   {
   
@@ -37,7 +37,7 @@ if( isset( $_FILES['photo'] ) )
           break;      
       }
 
-      $query = 'UPDATE projects SET
+      $query = 'UPDATE experience SET
         photo = "data:image/'.$type.';base64,'.base64_encode( file_get_contents( $_FILES['photo']['tmp_name'] ) ).'"
         WHERE id = '.$_GET['id'].'
         LIMIT 1';
@@ -47,10 +47,10 @@ if( isset( $_FILES['photo'] ) )
     
   }
   
-  set_message( 'Project photo has been updated' );
+  set_message( 'Work experience photo has been updated' );
 
-  header( 'Location: projects.php' );
-  die();
+  // header( 'Location: experience.php' );
+  // die();
   
 }
 
@@ -61,21 +61,21 @@ if( isset( $_GET['id'] ) )
   if( isset( $_GET['delete'] ) )
   {
     
-    $query = 'UPDATE projects SET
+    $query = 'UPDATE experience SET
       photo = ""
       WHERE id = '.$_GET['id'].'
       LIMIT 1';
     $result = mysqli_query( $connect, $query );
     
-    set_message( 'Project photo has been deleted' );
+    set_message( 'Experience photo has been deleted' );
     
-    header( 'Location: projects.php' );
+    header( 'Location: experience.php' );
     die();
     
   }
   
   $query = 'SELECT *
-    FROM projects
+    FROM experience
     WHERE id = '.$_GET['id'].'
     LIMIT 1';
   $result = mysqli_query( $connect, $query );
@@ -83,7 +83,7 @@ if( isset( $_GET['id'] ) )
   if( !mysqli_num_rows( $result ) )
   {
     
-    header( 'Location: projects.php' );
+    header( 'Location: experience.php' );
     die();
     
   }
@@ -96,7 +96,7 @@ include( 'includes/header-left.php' );
 include('wideimage/WideImage.php');
 ?>
 
-<h2>Edit Project</h2>
+<h2>Edit Experience</h2>
 
 <p>
   Note: For best results, photos should be approximately 800 x 800 pixels.
@@ -105,10 +105,10 @@ include('wideimage/WideImage.php');
 <?php if( $record['photo'] ): ?>
   <?php
   $img = WideImage::load($record['photo']);
-  $data = $img->resize( 200, 200, "outside")->crop('center', 'center', 200, 200)->asString( 'jpg', 70 );
+  $data = $img->resize( 250, 150, "outside")->crop('center', 'center', 250, 150)->asString( 'jpg', 70 );
   ?>
   <p><img src="data:image/jpg;base64,<?php echo base64_encode( $data ); ?>" width="200" height="200"></p>
-  <p><a href="projects_photo.php?id=<?php echo $_GET['id']; ?>&delete"><i class="fas fa-trash-alt"></i> Delete this Photo</a></p>
+  <p><a href="experience_photo.php?id=<?php echo $_GET['id']; ?>&delete"><i class="fas fa-trash-alt"></i> Delete this Photo</a></p>
 
 <?php endif; ?>
 
@@ -123,7 +123,7 @@ include('wideimage/WideImage.php');
   
 </form>
 
-<p><a href="projects.php"><i class="fas fa-arrow-circle-left"></i> Return to Project List</a></p>
+<p><a href="experience.php"><i class="fas fa-arrow-circle-left"></i> Return to Experience List</a></p>
 
 
 <?php

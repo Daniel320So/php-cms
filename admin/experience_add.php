@@ -14,12 +14,14 @@ if( isset( $_POST['title'] ) )
     
     $query = 'INSERT INTO experience (
         user_id,
+        company,
         title,
         content,
         start_date,
         end_date
       ) VALUES (
          "'.mysqli_real_escape_string( $connect, $_POST['user_id'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_POST['company'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['start_date'] ).'",
@@ -67,8 +69,13 @@ include( 'includes/header-left.php' );
   </select>
   <br>
 
+  <label for="company">Company:</label>
+  <input type="text" name="company" id="company" required>
+    
+  <br>
+
   <label for="title">Title:</label>
-  <input type="text" name="title" id="title">
+  <input type="text" name="title" id="title" required>
     
   <br>
   
@@ -91,12 +98,12 @@ include( 'includes/header-left.php' );
   <br>
   
   <label for="start_date">Start Date:</label>
-  <input type="date" name="start_date" id="start_date">
+  <input type="date" name="start_date" id="start_date" required>
   
   <br>
 
   <label for="end_date">End Date:</label>
-  <input type="date" name="end_date" id="end_date">
+  <input type="date" name="end_date" id="end_date" required>
   
   <br>
   
