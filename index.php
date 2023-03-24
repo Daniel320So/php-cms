@@ -152,7 +152,7 @@ include( 'admin/includes/functions.php' );
                                 <div class="project-image-container">
                                     <img src="'.$record[$i]['photo'].'" alt="Image of'.$record[$i]["title"].'">
                                     <div class="link-container">
-                                        <a href="'.$item[$i]["url"].'" target="_balnk" class="project-link"><p>Site</p></a>
+                                        <a href="'.$record[$i]["url"].'" target="_balnk" class="project-link"><p>Site</p></a>
                                     </div>
                                 </div>
                                 <div class="projects-text">
