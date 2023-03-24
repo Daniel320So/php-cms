@@ -80,7 +80,18 @@ include( 'admin/includes/functions.php' );
 
                 <!-- Technical Knowledge-->
                 <div id="technical-knowledge">
-                    <img src="./images/about/technical-knowledge.png" alt="Ho Kit So is interested in a wide variety of programming languages, including TypeScript, ReactJs, and Solidity.">
+                    <?php
+                        $query = 'SELECT * FROM user_skills LEFT JOIN skills ON user_skills.skill_id = skills.id WHERE user_id = 2 ORDER BY percent DESC';
+                        $result = mysqli_query( $connect, $query );
+                    ?>
+                    <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
+                        <?php echo '<img 
+                            class= "technical-image"
+                            src="'.$record['icon'].'" 
+                            alt="'.$record['name'].'"
+                            onclick="window.open(`'.$record['link'].'`)">
+                        </img>'; ?>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </section>

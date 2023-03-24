@@ -327,11 +327,15 @@ main {
 }
 
 #technical-knowledge {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5%;
     width: 90%;
 }
 
-#technical-knowledge img{
-    width: 100%;
+.technical-image{
+    width: 25%;
+    cursor: pointer;
 }
 
 #background-pattern-1 {
