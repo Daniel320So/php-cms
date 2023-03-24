@@ -74,7 +74,7 @@ include( 'includes/header-left.php' );
   <br>
 
   <label for="percent">Percent:</label>
-  <input type="number" name="percent" id="percent">
+  <input type="number" name="percent" id="percent" max="100" min="0" required>
     
   <br>
 

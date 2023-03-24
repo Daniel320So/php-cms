@@ -102,15 +102,29 @@ include('wideimage/WideImage.php');
   Note: For best results, photos should be approximately 800 x 800 pixels.
 </p>
 
+<?php 
+
+try {
+  ?>
 <?php if( $record['photo'] ): ?>
   <?php
   $img = WideImage::load($record['photo']);
   $data = $img->resize( 200, 200, "outside")->crop('center', 'center', 200, 200)->asString( 'jpg', 70 );
   ?>
   <p><img src="data:image/jpg;base64,<?php echo base64_encode( $data ); ?>" width="200" height="200"></p>
-  <p><a href="projects_photo.php?id=<?php echo $_GET['id']; ?>&delete"><i class="fas fa-trash-alt"></i> Delete this Photo</a></p>
 
 <?php endif; ?>
+
+<?php
+} catch (Exception $e) {
+  ?>
+  <p><img src="<?=$record['photo']?>" width="200" height="200"></p>
+
+  <?php
+  
+}?>
+  <p><a href="projects_photo.php?id=<?php echo $_GET['id']; ?>&delete"><i class="fas fa-trash-alt"></i> Delete this Photo</a></p>
+
 
 <form method="post" enctype="multipart/form-data">
   
