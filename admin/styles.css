@@ -223,7 +223,21 @@ input[type=submit] {
 .card-container {
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  gap: 4em;
+  gap: 2.5em;
+}
+
+@media screen and (max-width: 1366px) {
+  .card-container {
+    grid-template-columns: repeat(3,1fr);
+    gap: 2em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
 }
 
 .card-container.col-2 {

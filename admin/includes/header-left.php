@@ -37,5 +37,6 @@
   <div class="main-wrapper">
 
     <?php echo get_message(); ?>
+
     <div style="max-width: 1500px; margin: auto; padding: 0 1%;">
   
