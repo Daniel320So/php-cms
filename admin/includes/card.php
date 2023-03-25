@@ -22,7 +22,7 @@ $camera = "data:image/gif;base64,R0lGODlh6ANYAsQAAOTk5N7e3ufn5+jo6Ozs7Obm5vPz89/
 
         <div class="card-header">
             <h3 class="card-title">
-            <?=$id.". ".$title?>
+            <?=$title?>
             </h3>
             <?php
                 if(isset($subtitle))
