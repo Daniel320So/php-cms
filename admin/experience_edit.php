@@ -21,7 +21,7 @@ if( isset( $_POST['title'] ) )
   {
     
     $query = 'UPDATE experience SET
-      user_id = "'.mysqli_real_escape_string( $connect, $_POST['user_id']).'",
+      user_id = "'.mysqli_real_escape_string( $connect, $_SESSION['id']).'",
       company = "'.mysqli_real_escape_string( $connect, $_POST['company']).'",
       title = "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
       content = "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
@@ -71,19 +71,12 @@ include( 'includes/header-left.php' );
 <form method="post">
 
   <label for="user">User:</label>
-  <select id="user_id" name="user_id">
-    <option disabled>Select a username...</option>
-    <?php
-      $q = "SELECT id, first, last FROM users";
+  <?php
+      $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
       $res = mysqli_query($connect, $q);
-      while($user = mysqli_fetch_assoc($res))
-      {
-      ?>
-      <option <?=$user['id']==htmlentities( $record['user_id'] ) ? "selected" : null?> value="<?=$user['id']?>"><?=$user['first']?> <?=$user['last']?></option>
-      <?php
-      }
-    ?>
-  </select>
+      $user = mysqli_fetch_assoc($res);
+  ?>
+  <input id="user" name="user_id" value="<?=$user['first'].' '.$user['last'];?>" disabled>
   <br>
   
   <label for="company">Company:</label>

@@ -119,6 +119,7 @@ $result = mysqli_query( $connect, $query );
         <th align="center">Percent</th>
         <th align="left">Description</th>
         <th></th>
+        <th></th>
       </tr>
       <?php foreach( $user_skills[$user['id']] as $record ): ?>
         <tr>
@@ -128,6 +129,9 @@ $result = mysqli_query( $connect, $query );
           <td align="center"><?php echo htmlentities( $record['percent'] ); ?>%</td>
           <td align="left">
             <?php echo htmlentities( $record['description'] ); ?>
+          </td>
+          <td>
+          <a href="skills_assign.php?id=<?php echo $record['skill_id']; ?>">Edit</i></a>
           </td>
           <td>
           <a href="skills.php?cmd=remove&skill=<?php echo $record['skill_id']; ?>&user=<?php echo $record['user_id']; ?>">Remove</i></a>

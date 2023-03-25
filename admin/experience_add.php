@@ -20,7 +20,7 @@ if( isset( $_POST['title'] ) )
         start_date,
         end_date
       ) VALUES (
-         "'.mysqli_real_escape_string( $connect, $_POST['user_id'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_SESSION['id'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['company'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
@@ -38,13 +38,6 @@ if( isset( $_POST['title'] ) )
   
 }
 
-$selected_user_id;
-
-if( isset($_GET['user_id']) )  
-{
-  $selected_user_id = htmlentities($_GET['user_id']);
-}
-
 include( 'includes/header-left.php' );
 
 ?>
@@ -54,19 +47,12 @@ include( 'includes/header-left.php' );
 <form method="post">
 
   <label for="user">User:</label>
-  <select id="user_id" name="user_id">
-    <option selected disabled value="0">Select a username...</option>
-    <?php
-      $q = "SELECT id, first, last FROM users";
+  <?php
+      $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
       $res = mysqli_query($connect, $q);
-      while($user = mysqli_fetch_assoc($res))
-      {
-      ?>
-      <option value="<?=$user['id']?>"  <?= $user['id'] == $selected_user_id ? "selected": null; ?> ><?=$user['first']?> <?=$user['last']?></option>
-      <?php
-      }
-    ?>
-  </select>
+      $user = mysqli_fetch_assoc($res);
+  ?>
+  <input id="user" name="user_id" value="<?=$user['first'].' '.$user['last'];?>" disabled>
   <br>
 
   <label for="company">Company:</label>
