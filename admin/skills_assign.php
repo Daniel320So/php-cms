@@ -6,13 +6,29 @@ include( 'includes/functions.php' );
 
 secure();
 
+if ( isset($_GET['id']))
+{
+  $q = 'SELECT * FROM user_skills 
+  WHERE user_id='.$_SESSION['id'].'
+  AND skill_id='.$_GET['id'].'
+  LIMIT 1';
+  $res = mysqli_query($connect, $q);
+  $userskill = mysqli_fetch_assoc($res);
+}
+
 if( isset( $_POST['skill_id'] ) )
 {
-  
+
   // checks for minimum content
   if( $_POST['skill_id'] and $_SESSION['id'] )
   {
     
+    $del_q = 'DELETE FROM user_skills 
+    WHERE skill_id='.$_POST['skill_id'].'
+    AND user_id='.$_SESSION['id'].'';
+
+    mysqli_query($connect, $del_q);
+
     $query = 'INSERT INTO user_skills (
         user_id,
         skill_id,
@@ -42,7 +58,6 @@ include( 'includes/header-left.php' );
 <h2>Add Skill</h2>
 
 <form method="post">
-  
 <label for="user">User:</label>
   <?php
       $q = 'SELECT first, last FROM users WHERE id = '.$_SESSION['id'].' LIMIT 1';
@@ -61,7 +76,7 @@ include( 'includes/header-left.php' );
       while($skill = mysqli_fetch_assoc($res))
       {
       ?>
-      <option value="<?=$skill['id']?>"><?=$skill['name']?></option>
+      <option value="<?=$skill['id']?>" <?php if(isset($userskill) and $userskill['skill_id'] == $skill['id']) echo "selected";?>><?=$skill['name']?></option>
       <?php
       }
     ?>
@@ -69,12 +84,12 @@ include( 'includes/header-left.php' );
   <br>
 
   <label for="description">Description:</label>
-  <input type="text" name="description" id="description">
+  <input type="text" name="description" id="description" <?=isset($userskill) ? 'value="'.$userskill['description'].'"' : null?>>
     
   <br>
 
   <label for="percent">Percent:</label>
-  <input type="number" name="percent" id="percent" max="100" min="0" required>
+  <input type="number" name="percent" id="percent" max="100" min="0" required <?=isset($userskill) ? 'value="'.$userskill['percent'].'"' : null?>>
     
   <br>
 
