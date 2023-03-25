@@ -334,6 +334,7 @@ main {
 }
 
 .technical-image{
+    margin-bottom: 5px;
     width: 25%;
     cursor: pointer;
 }
