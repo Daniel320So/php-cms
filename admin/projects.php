@@ -3,6 +3,7 @@
 include( 'includes/database.php' );
 include( 'includes/config.php' );
 include( 'includes/functions.php' );
+include ( 'includes/card.php' );
 
 secure();
 
@@ -25,63 +26,79 @@ include( 'includes/header-left.php' );
 
 $query = 'SELECT *
   FROM projects
+  WHERE user_id ='.$_SESSION['id'].'
   ORDER BY date DESC';
 $result = mysqli_query( $connect, $query );
+
+$projects = array();
+
+// gets a list of projects, and sorts them into an array based on who the projects belongs to
+
+while($project = mysqli_fetch_assoc($result))
+{
+  if(!isset($projects[$project['user_id']]))
+  {
+    $projects[$project['user_id']] = array();
+  }
+  
+  array_push($projects[$project['user_id']],$project);
+}
 
 ?>
 
 <h2>Manage Projects</h2>
 
-<table>
-  <tr>
-    <th></th>
-    <th align="center">ID</th>
-    <th align="left">Title</th>
-    <th align="center">Type</th>
-    <th align="center">Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
-    <tr>
-      <td align="center">
-        <img src="image.php?type=project&id=<?php echo $record['id']; ?>&width=300&height=300&format=inside">
-      </td>
-      <td align="center"><?php echo $record['id']; ?></td>
-      <td align="left">
-        <?php echo htmlentities( $record['title'] ); ?>
-        <small><?php echo $record['content']; ?></small>
-      </td>
-      <td align="center"><?php echo $record['type']; ?></td>
-      <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['date'] ); ?></td>
-      <td align="center"><a href="projects_photo.php?id=<?php echo $record['id']; ?>">Photo</i></a></td>
-      <td align="center"><a href="projects_edit.php?id=<?php echo $record['id']; ?>">Edit</i></a></td>
-      <td>
-        <button class="delete-button" data-id="<?php echo $record['id'];?>" data-title="<?php echo $record['title'];?>">Delete</button>
-      </td>
-      </tr>
-  <?php endwhile; ?>
-</table>
+<?php 
 
-<p><a href="projects_add.php"><i class="fas fa-plus-square"></i> Add Project</a></p>
+  // Organizes projects based on which user they belong to
 
+  $query = 'SELECT first,last,id FROM users WHERE id = "'.$_SESSION['id'].'" ORDER BY first, last, id;';
+  $users = mysqli_query($connect, $query);
+  while($user = mysqli_fetch_assoc($users))
+  {
+
+    ?>
+    <h2><?=$user['first'].' '.$user['last']?></h2>
+    <p><a href="projects_add.php?user_id=<?=$user['id']?>"><i class="fas fa-plus-square"></i> Add Project for <?=$user['first'].' '.$user['last']?></a></p>
+    <?
+    if(!isset($projects[$user['id']])) continue;
+    ?>
+
+    <div class="card-container ">
+
+    <?php foreach( $projects[$user['id']] as $record ) {
+        content_card (
+
+          $record['id'], // item ID
+
+          "projects", // Record type
+
+          $record['title'], // Title
+
+          $record['type'].'<br>'.$record['url'], // Type & url
+
+          $record['photo'], // Thumbnail Link
+
+          $record['content'], // body content (limi 200 characters)
+
+          "projects_edit.php?id=".$record['id'], // "Edit" button link location
+
+          "projects.php?cmd=delete&delete=".$record['id'], // "Delete" button link location
+
+          "projects_photo.php?id=".$record['id'], // "Photo" button link location
+        );
+
+    } 
+    ?>
+    </div>
+
+    <?php
+  }
+
+?>
 
 <?php
 
 include( 'includes/footer.php' );
 
 ?>
-
-<script type="text/JavaScript">
-let deleteButtons = document.getElementsByClassName("delete-button")
-if (deleteButtons && deleteButtons.length > 0) {
-  for (let button of deleteButtons) {
-    button.onclick = () => {
-      let confirmedDelete = confirm(`Are you sure you want to delete ${button.dataset.title}?`);
-      if (!confirmedDelete) return;
-      window.location.href = `projects.php?delete=${button.dataset.id}`;
-    }
-  }
-};
-</script>
